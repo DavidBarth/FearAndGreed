@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FearAndGreed.Util;
+using System;
 
 namespace FearAndGreed.Models
 {
@@ -7,9 +8,25 @@ namespace FearAndGreed.Models
     /// </summary>
     public class FearAndGreedModel
     {
-        public int IndexValue { get; set; }
+        private DateTime indexDateTime;
+
+        private DateTime indexNextUpdate;
+
+        public string IndexValue { get; set; }
+
         public string IndexClassification { get; set; }
-        public DateTime DateTime { get; set; }
-        public DateTime NextUpdate { get; set; }
+
+        public string IndexDateTime 
+        {
+            get { return indexDateTime.ToString(); }
+            set { indexDateTime = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
+        }
+
+        public string IndexNextUpdate
+        {
+            get { return indexNextUpdate.ToString(); }
+            set { indexNextUpdate = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
+
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model FearAndGreed.Models.FearAndGreedModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<div>
+    <h4>FearAndGreedModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IndexValue)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IndexValue)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IndexClassification)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IndexClassification)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IndexDateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IndexDateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IndexNextUpdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IndexNextUpdate)
+        </dd>
+    </dl>
+</div>
