@@ -1,5 +1,7 @@
 ﻿using FearAndGreed.Util;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FearAndGreed.Models
 {
@@ -8,6 +10,9 @@ namespace FearAndGreed.Models
     /// </summary>
     public class FearAndGreedModel
     {
+        [Key]
+        public int Index { get; set; }
+
         private DateTime indexDateTime;
 
         private DateTime indexNextUpdate;
@@ -15,6 +20,8 @@ namespace FearAndGreed.Models
         public string IndexValue { get; set; }
 
         public string IndexClassification { get; set; }
+
+        public virtual List<FearAndGreedModel> FearAndGreeds { get; set; }
 
         public string IndexDateTime 
         {
@@ -26,7 +33,6 @@ namespace FearAndGreed.Models
         {
             get { return indexNextUpdate.ToString(); }
             set { indexNextUpdate = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
-
         }
     }
 }
