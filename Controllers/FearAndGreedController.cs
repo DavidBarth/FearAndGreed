@@ -1,4 +1,6 @@
-﻿using FearAndGreed.Models;
+﻿using FearAndGreed.Data;
+using FearAndGreed.Models;
+using FearAndGreed.Service.FearAndGreed;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System;
@@ -11,7 +13,13 @@ namespace FearAndGreed.Controllers
     public class FearAndGreedController : Controller
     {
         string Baseurl = "https://api.alternative.me/fng/";
+        private FearAndGreedContext _context;
 
+        public FearAndGreedController(FearAndGreedContext context)
+        {
+            _context = context;
+            DbInitializer.Initialize(_context);
+        }
         public async Task<ActionResult> Index()
         {
             using (var client = new HttpClient())
@@ -35,24 +43,16 @@ namespace FearAndGreed.Controllers
                     //Deserializing the response recieved from web api
                     JObject result = JObject.Parse(response);
 
-                    FearAndGreedModel model = BuildViewModelInfo(result);
+                    FearAndGreedModel model = FearAndGreedService.BuildViewModelInfo(result);
+
+                    //NEXT STEP FACTOR THIS OUT
+                    _context.Add(model);
+                    _context.SaveChanges();
 
                     return View(model);
                 }
                 return new ViewResult();
             }
-        }
-
-        private static FearAndGreedModel BuildViewModelInfo(JObject result)
-        {
-            var data = result.SelectToken("data").SelectToken(string.Empty).First;
-            FearAndGreedModel model = new FearAndGreedModel();
-
-            model.IndexValue = data.SelectToken("value").ToString();
-            model.IndexClassification = data.SelectToken("value_classification").ToString();
-            model.IndexDate = data.SelectToken("timestamp").ToString();
-            model.IndexNextUpdate = data.SelectToken("time_until_update").ToString();
-            return model;
         }
     }
 }
