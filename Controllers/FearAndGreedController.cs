@@ -1,9 +1,7 @@
-﻿using FearAndGreed.Context;
-using FearAndGreed.Models;
+﻿using FearAndGreed.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -39,21 +37,9 @@ namespace FearAndGreed.Controllers
 
                     FearAndGreedModel model = BuildViewModelInfo(result);
 
-                    SaveData(model);
-
                     return View(model);
                 }
                 return new ViewResult();
-                
-            }
-        }
-
-        private void SaveData(FearAndGreedModel model)
-        {
-            using (var db = new FearAndGreedContext())
-            {
-                db.FearAndGreeds.Add(model);
-                db.SaveChanges();
             }
         }
 
