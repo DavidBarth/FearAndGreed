@@ -31,7 +31,7 @@ namespace FearAndGreed.Models
 
         public string IndexNextUpdate
         {
-            get { return indexNextUpdate.ToString(); }
+            get { return indexNextUpdate.Hour.ToString(); }
             set { indexNextUpdate = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
         }
     }
