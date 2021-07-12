@@ -50,7 +50,7 @@ namespace FearAndGreed.Controllers
 
             model.IndexValue = data.SelectToken("value").ToString();
             model.IndexClassification = data.SelectToken("value_classification").ToString();
-            model.IndexDateTime = data.SelectToken("timestamp").ToString();
+            model.IndexDate = data.SelectToken("timestamp").ToString();
             model.IndexNextUpdate = data.SelectToken("time_until_update").ToString();
             return model;
         }

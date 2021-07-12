@@ -23,9 +23,9 @@ namespace FearAndGreed.Models
 
         public virtual List<FearAndGreedModel> FearAndGreeds { get; set; }
 
-        public string IndexDateTime 
+        public string IndexDate 
         {
-            get { return indexDateTime.ToString(); }
+            get { return indexDateTime.Day.ToString() + "/" + indexDateTime.Month.ToString() + "/" + indexDateTime.Year.ToString(); }
             set { indexDateTime = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
         }
 
