@@ -7,32 +7,28 @@
 <h1>View</h1>
 
 <div>
-    <h4>FearAndGreedModel</h4>
+    <h4>Current Fear And Greed Index of Markets</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IndexValue)
-        </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IndexValue)
+            <div>
+                Index Value: @Model.IndexValue
+            </div>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IndexClassification)
-        </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IndexClassification)
+            <Div>
+                Classification: @Model.IndexClassification
+            </Div>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IndexDateTime)
-        </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IndexDateTime)
+            <div>
+                Date Time: @Model.IndexDateTime
+            </div>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IndexNextUpdate)
-        </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IndexNextUpdate)
+            <div>
+                Time till Next Update: @Model.IndexNextUpdate
+            </div>
         </dd>
     </dl>
 </div>
