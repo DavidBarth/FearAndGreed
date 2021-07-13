@@ -5,7 +5,7 @@ namespace FearAndGreed.Service.FearAndGreed
 {
     public class FearAndGreedService
     {
-        internal static FearAndGreedModel BuildViewModelInfo(JObject result)
+        public static FearAndGreedModel BuildViewModelInfo(JObject result)
         {
             var data = result.SelectToken("data").SelectToken(string.Empty).First;
             FearAndGreedModel model = new FearAndGreedModel();
