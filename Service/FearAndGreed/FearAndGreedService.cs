@@ -1,5 +1,7 @@
-﻿using FearAndGreed.Models;
+﻿using FearAndGreed.Data;
+using FearAndGreed.Models;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace FearAndGreed.Service.FearAndGreed
 {
@@ -15,6 +17,14 @@ namespace FearAndGreed.Service.FearAndGreed
             model.IndexDate = data.SelectToken("timestamp").ToString();
             model.IndexNextUpdate = data.SelectToken("time_until_update").ToString();
             return model;
+        }
+
+        internal static void SaveModel(FearAndGreedModel model, FearAndGreedContext context)
+        {
+            DbInitializer.Initialize(context);
+            context.Add(model);
+            context.SaveChanges();
+
         }
     }
 }
