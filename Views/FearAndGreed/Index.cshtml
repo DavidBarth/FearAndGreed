@@ -1,4 +1,4 @@
-﻿@model FearAndGreed.Models.FearAndGreedModel
+﻿@model IEnumerable<FearAndGreed.Models.FearAndGreedModel>
 
 @{
     ViewData["Title"] = "View";
@@ -8,27 +8,29 @@
 
 <div>
     <h4>Current Fear And Greed Index of Markets</h4>
-    <hr />
-    <dl class="row">
-        <dd class = "col-sm-10">
-            <div>
-                Index Value: @Model.IndexValue
-            </div>
-        </dd>
-        <dd class = "col-sm-10">
-            <Div>
-                Classification: @Model.IndexClassification
-            </Div>
-        </dd>
-        <dd class = "col-sm-10">
-            <div>
-                Date Time: @Model.IndexDate
-            </div>
-        </dd>
-        <dd class = "col-sm-10">
-            <div>
-                Time till Next Update: @Model.IndexNextUpdate hr(s)
-            </div>
-        </dd>
-    </dl>
+    @foreach (var item in Model)
+    {
+        <dl class="row">
+            <dd class="col-sm-10">
+                <div>
+                    Index Value: @item.IndexValue
+                </div>
+            </dd>
+            <dd class="col-sm-10">
+                <Div>
+                    Classification: @item.IndexClassification
+                </Div>
+            </dd>
+            <dd class="col-sm-10">
+                <div>
+                    Date: @item.IndexDate.Day/@item.IndexDate.Month/@item.IndexDate.Year
+                </div>
+            </dd>
+            <dd class="col-sm-10">
+                <div>
+                    Time till Next Update: @item.IndexNextUpdate.Hour hr(s)
+                </div>
+            </dd>
+        </dl>
+    }
 </div>

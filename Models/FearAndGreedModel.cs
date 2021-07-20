@@ -11,28 +11,13 @@ namespace FearAndGreed.Models
     public class FearAndGreedModel
     {
         [Key]
-        public int Index { get; set; }
-
-        private DateTime _indexDateTime;
-
-        private DateTime _indexNextUpdate;
-
+        public int Id { get; set; }
         public string IndexValue { get; set; }
 
         public string IndexClassification { get; set; }
 
-        public virtual List<FearAndGreedModel> FearAndGreeds { get; set; }
+        public DateTime IndexDate { get; set; }
 
-        public string IndexDate 
-        {
-            get { return _indexDateTime.Day.ToString() + "/" + _indexDateTime.Month.ToString() + "/" + _indexDateTime.Year.ToString(); }
-            set { _indexDateTime = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
-        }
-
-        public string IndexNextUpdate
-        {
-            get { return _indexNextUpdate.Hour.ToString(); }
-            set { _indexNextUpdate = TimeStampConverter.UnixTimestampToDateTime(double.Parse(value)); }
-        }
+        public DateTime IndexNextUpdate { get; set; }
     }
 }

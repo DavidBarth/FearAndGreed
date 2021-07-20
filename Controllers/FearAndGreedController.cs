@@ -18,21 +18,21 @@ namespace FearAndGreed.Controllers
         public FearAndGreedController(FearAndGreedContext context)
         {
             _context = context;
-            DbInitializer.Initialize(_context);
         }
+
         public async Task<ActionResult> Index()
         {
-            using (var client = new HttpClient())
+            using (var httpClient = new HttpClient())
             {
                 //Passing service base url  
-                client.BaseAddress = new Uri(Baseurl);
+                httpClient.BaseAddress = new Uri(Baseurl);
 
-                client.DefaultRequestHeaders.Clear();
+                httpClient.DefaultRequestHeaders.Clear();
                 //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource  
-                HttpResponseMessage Res = await client.GetAsync(string.Empty);
+                HttpResponseMessage Res = await httpClient.GetAsync(string.Empty);
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
@@ -44,12 +44,9 @@ namespace FearAndGreed.Controllers
                     JObject result = JObject.Parse(response);
 
                     FearAndGreedModel model = FearAndGreedService.BuildViewModelInfo(result);
-
-                    //NEXT STEP FACTOR THIS OUT
-                    _context.Add(model);
-                    _context.SaveChanges();
-
-                    return View(model);
+                    FearAndGreedService.SaveModel(model, _context);
+                    var listOfModels = FearAndGreedService.GetAllModels(_context);
+                    return View(listOfModels);
                 }
                 return new ViewResult();
             }

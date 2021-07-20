@@ -2,9 +2,9 @@
 {
     public static class DbInitializer
     {
-        public static void Initialize(FearAndGreedContext context)
+        public static bool Initialize(FearAndGreedContext context)
         {
-            context.Database.EnsureCreated();
+            return context.Database.EnsureCreated();
         }
     }
 }
