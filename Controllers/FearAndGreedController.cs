@@ -45,8 +45,8 @@ namespace FearAndGreed.Controllers
 
                     FearAndGreedModel model = FearAndGreedService.BuildViewModelInfo(result);
                     FearAndGreedService.SaveModel(model, _context);
-
-                    return View(model);
+                    var listOfModels = FearAndGreedService.GetAllModels(_context);
+                    return View(listOfModels);
                 }
                 return new ViewResult();
             }
