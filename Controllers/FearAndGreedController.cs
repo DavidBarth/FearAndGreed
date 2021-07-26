@@ -51,5 +51,12 @@ namespace FearAndGreed.Controllers
                 return new ViewResult();
             }
         }
+
+        [HttpPost]
+        public IActionResult Index(string daysToCountAverageFor)
+        {
+            //param maps to name attribute in view
+            return new ViewResult();
+        }
     }
 }
